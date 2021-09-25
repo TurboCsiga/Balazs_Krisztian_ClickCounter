@@ -65,15 +65,27 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        val useNum = num
-        outState.putInt("savedInt", num)
+        outState.putInt("szamMentes", num)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
 
-        val userInt = savedInstanceState.getInt("savedInt", 0)
-        num  = userInt
+        val savedNum = savedInstanceState.getInt("szamMentes")
+        num  = savedNum
+        textView.setText(num.toString())
+        if (checkIfPrime(num)) {
+            textView.setTextColor(Color.rgb(255, 255, 255))
+        }
+        else if (num == 0) {
+            textView.setTextColor(Color.rgb(0, 0, 255))
+        }
+        else if (num < 0) {
+            textView.setTextColor(Color.rgb(255, 0, 0))
+        }
+        else if (num > 0) {
+            textView.setTextColor(Color.rgb(0, 255, 0))
+        }
         textView.text = num.toString()
     }
 
