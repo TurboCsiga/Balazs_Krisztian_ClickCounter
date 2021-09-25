@@ -3,6 +3,7 @@ package com.example.clickcounter
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.widget.Button
 import android.widget.TextView
 
@@ -12,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var buttonUp : Button
     lateinit var buttonDown : Button
     var num = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +61,20 @@ class MainActivity : AppCompatActivity() {
             return@setOnLongClickListener true
         }
 
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val useNum = num
+        outState.putInt("savedInt", num)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+
+        val userInt = savedInstanceState.getInt("savedInt", 0)
+        num  = userInt
+        textView.text = num.toString()
     }
 
     fun checkIfPrime(szam: Int): Boolean {
