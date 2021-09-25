@@ -39,6 +39,14 @@ class MainActivity : AppCompatActivity() {
                 textView.setTextColor(Color.rgb(255, 0, 0))
             }
         }
+
+        textView.setOnLongClickListener {
+            num = 0
+            textView.setText(num.toString())
+            textView.setTextColor(Color.rgb(0, 0, 255))
+            return@setOnLongClickListener true
+        }
+
     }
 
     fun Init()
