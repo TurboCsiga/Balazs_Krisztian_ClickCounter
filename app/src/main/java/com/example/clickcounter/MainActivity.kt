@@ -21,22 +21,34 @@ class MainActivity : AppCompatActivity() {
         buttonUp.setOnClickListener{
             num++
             textView.setText(num.toString())
-            if (num == 0) {
+            if (checkIfPrime(num)) {
+                textView.setTextColor(Color.rgb(255, 255, 255))
+            }
+            else if (num == 0) {
                 textView.setTextColor(Color.rgb(0, 0, 255))
             }
             else if (num > 0) {
                 textView.setTextColor(Color.rgb(0, 255, 0))
+            }
+            else if (num < 0) {
+                textView.setTextColor(Color.rgb(255, 0, 0))
             }
         }
 
         buttonDown.setOnClickListener{
             num--
             textView.setText(num.toString())
-            if (num == 0) {
+            if (checkIfPrime(num)) {
+                textView.setTextColor(Color.rgb(255, 255, 255))
+            }
+            else if (num == 0) {
                 textView.setTextColor(Color.rgb(0, 0, 255))
             }
             else if (num < 0) {
                 textView.setTextColor(Color.rgb(255, 0, 0))
+            }
+            else if (num > 0) {
+                textView.setTextColor(Color.rgb(0, 255, 0))
             }
         }
 
@@ -47,6 +59,18 @@ class MainActivity : AppCompatActivity() {
             return@setOnLongClickListener true
         }
 
+    }
+
+    fun checkIfPrime(szam: Int): Boolean {
+        if (szam < 2) return false
+        else if (num < 4) return true
+        var i = szam - 1
+        var search = true
+        while (i >= Math.floor(Math.sqrt(szam.toDouble())) && search) {
+            if (szam % i == 0) search = false
+            i--
+        }
+        return search
     }
 
     fun Init()
